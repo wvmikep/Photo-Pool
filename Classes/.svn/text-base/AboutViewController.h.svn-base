@@ -1,0 +1,30 @@
+//
+//  AboutViewController.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 7/24/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface AboutViewController : UIViewController {
+
+}
+
+-(IBAction) doneButtonTapped:(id)sender;
+
+-(IBAction) gemmellButtonTapped:(id)sender;
+
+-(IBAction) flickrButtonTapped:(id)sender;
+
+-(IBAction) marcButtonTapped:(id)sender;
+
+-(IBAction) iconSourceButtonTapped:(id)sender;
+
+-(IBAction) claireWareButtonTapped:(id)sender;
+
+-(IBAction) facebookButtonTapped:(id)sender;
+
+@end

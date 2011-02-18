@@ -1,0 +1,41 @@
+//
+//  FlickrGroupPickerController.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 7/5/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ObjectiveFlickr.h"
+#import "SingletonFlickrGroup.h"
+
+
+@interface FlickrGroupPickerController : UIViewController <OFFlickrAPIRequestDelegate> {
+	UILabel *groupPhotoCountSliderLabel;
+	UITextField *groupName;
+//	UITextField *groupTag;
+	NSDictionary *plistDictionary;
+	SingletonFlickrGroup *sharedGroupState;
+	UISlider *groupPhotoCountSlider;
+	OFFlickrAPIContext *context;
+	OFFlickrAPIRequest *flickrRequest;
+	UIPopoverController *popover;
+
+}
+@property (nonatomic, retain) IBOutlet UILabel *groupPhotoCountSliderLabel;
+@property (nonatomic, retain) IBOutlet UITextField *groupName;
+//@property (nonatomic, retain) IBOutlet UITextField *groupTag;
+@property (nonatomic, retain) IBOutlet UISlider *groupPhotoCountSlider;
+@property (nonatomic, retain) OFFlickrAPIRequest *flickrRequest;
+@property (nonatomic, retain) OFFlickrAPIContext *context;
+@property (nonatomic, retain) NSDictionary *plistDictionary;
+
+-(IBAction) groupPhotoCountSliderChanged:(id)sender;
+-(IBAction) groupSelected:(id)sender;
+//-(IBAction) groupTagSelected:(id)sender;
+-(IBAction) validateAndCloseButtonTapped:(id)sender;
+-(IBAction) textFieldDoneEditing:(id)sender;
+-(IBAction) backgroundTap:(id)sender;
+-(void)setGroupPop:(UIPopoverController*)aPopover;
+@end

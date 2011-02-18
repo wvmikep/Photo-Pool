@@ -1,0 +1,58 @@
+//
+//  FlickrPhotoSearchController.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 9/12/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ObjectiveFlickr.h"
+#import "SingletonFlickrGroup.h"
+
+
+@interface FlickrPhotoSearchController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, OFFlickrAPIRequestDelegate> {
+	SingletonFlickrGroup *sharedGroupState;
+	BOOL loadingPhotos;
+	UISearchBar *photoSearchBar;
+	int downloadCount;
+	NSDictionary *plistDictionary;
+	OFFlickrAPIContext *context;
+	OFFlickrAPIRequest *flickrRequest;
+	NSInteger perPageAsInt;
+	UIPopoverController *popover;
+	UIImageView *mainDisplayImage;
+	UIImageView *mirrorDisplayImage;
+	BOOL mirrorState;
+	NSMutableArray *groupPhotoList;
+	NSMutableArray *photoArray;
+	NSMutableArray *photoThumbArray;
+	NSURL *photoURL;
+	NSData *photoData;
+	UIActivityIndicatorView *activityView;
+
+
+}
+@property (nonatomic, retain) NSMutableArray *photoArray;
+@property (nonatomic, retain) NSMutableArray *photoThumbArray;
+@property (nonatomic, retain) IBOutlet UISearchBar *photoSearchBar;
+@property (nonatomic, retain) OFFlickrAPIRequest *flickrRequest;
+@property (nonatomic, retain) OFFlickrAPIContext *context;
+@property (nonatomic, retain) NSDictionary *plistDictionary;
+@property (nonatomic, assign) NSInteger perPageAsInt;
+@property (nonatomic, retain) NSMutableArray *groupPhotoList;
+@property (nonatomic, retain) NSURL *photoURL;
+@property (nonatomic, retain) NSData *photoData;
+@property (nonatomic, retain) UIActivityIndicatorView *activityView;
+
+-(void) resetSearch;
+//-(void) handleSearchForTerm:(NSString *)searchTerm;
+-(void)setPopover:(UIPopoverController*)aPopover;
+
+-(void)setMainImage:(UIImageView*)aImage;
+
+-(void)setMirrorState:(BOOL)aMirrorState;
+
+-(void)setMirrorImage:(UIImageView *)aImage;
+
+@end

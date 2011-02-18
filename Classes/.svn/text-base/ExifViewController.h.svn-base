@@ -1,0 +1,31 @@
+//
+//  ExifViewController.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 7/6/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ObjectiveFlickr.h"
+#import "SingletonFlickrGroup.h"
+
+
+@interface ExifViewController : UITableViewController <OFFlickrAPIRequestDelegate> {
+	NSDictionary *plistDictionary;
+	OFFlickrAPIContext *context;
+	OFFlickrAPIRequest *flickrRequest;
+	SingletonFlickrGroup *sharedGroupState;
+	BOOL loadingEXIF;
+	UIActivityIndicatorView *activityView;
+	
+	NSTimer *exifTimer;
+
+}
+@property (nonatomic, retain) OFFlickrAPIRequest *flickrRequest;
+@property (nonatomic, retain) OFFlickrAPIContext *context;
+@property (nonatomic, retain) NSDictionary *plistDictionary;
+@property (nonatomic, retain) UIActivityIndicatorView *activityView;
+@property (nonatomic, retain) NSTimer *exifTimer;
+
+@end

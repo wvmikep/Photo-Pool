@@ -1,0 +1,40 @@
+//
+//  PersonInfoCard.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 9/25/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ObjectiveFlickr.h"
+#import "SingletonFlickrGroup.h"
+
+
+@interface PersonInfoCard : UIViewController <OFFlickrAPIRequestDelegate>{
+	NSDictionary *plistDictionary;
+	OFFlickrAPIContext *context;
+	OFFlickrAPIRequest *flickrRequest;
+	OFFlickrAPIRequest *artistRequest;
+	SingletonFlickrGroup *sharedGroupState;
+	BOOL loadingEXIF;
+
+	UILabel *photoBy;
+	UILabel *photoArtist;
+	UIImageView *artistIcon;
+	NSURL *iconURL;
+	NSData *iconData;
+
+}
+@property (nonatomic, retain) NSData *iconData;
+@property (nonatomic, retain) NSURL *iconURL;
+@property (nonatomic, retain) UILabel *photoBy;
+@property (nonatomic, retain) IBOutlet UILabel *photoArtist;
+@property (nonatomic, retain) IBOutlet UIImageView *artistIcon;
+
+@property (nonatomic, retain) OFFlickrAPIRequest *flickrRequest;
+@property (nonatomic, retain) OFFlickrAPIContext *context;
+@property (nonatomic, retain) NSDictionary *plistDictionary;
+-(IBAction) changeSearchContext:(id)sender;
+
+@end

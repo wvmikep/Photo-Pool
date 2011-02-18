@@ -1,0 +1,18 @@
+//
+//  ExternalMonitor.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 7/17/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface ExternalMonitor : UIViewController {
+	UIImageView *mirrorImage;
+}
+
+@property (nonatomic, retain) IBOutlet UIImageView *mirrorImage;
+
+@end

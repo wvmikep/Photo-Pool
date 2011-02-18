@@ -1,0 +1,59 @@
+//
+//  FlickrPhotoPickerController.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 7/5/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ObjectiveFlickr.h"
+#import "SingletonFlickrGroup.h"
+#import "UIImage+Resize.h"
+
+@interface FlickrPhotoPickerController : UITableViewController <OFFlickrAPIRequestDelegate> {
+	NSMutableArray *photoArray;
+	NSMutableArray *photoThumbArray;
+	NSDictionary *plistDictionary;
+	OFFlickrAPIContext *context;
+	OFFlickrAPIRequest *flickrRequest;
+	NSURL *photoURL;
+	NSData *photoData;
+	SingletonFlickrGroup *sharedGroupState;
+	BOOL loadingPhotos;
+	UIPopoverController *popover;
+	UIImageView *mainDisplayImage;
+	UIImageView *mirrorDisplayImage;
+	UIActivityIndicatorView *spinner;
+	UIActivityIndicatorView *activityView;
+	int downloadCount;
+	BOOL mirrorState;
+//	NSString perPage;
+	NSInteger perPageAsInt;
+	NSDictionary *perPageDict;
+	NSMutableArray *groupPhotoList;
+}
+@property (nonatomic, retain) NSMutableArray *photoArray;
+@property (nonatomic, retain) NSMutableArray *photoThumbArray;
+@property (nonatomic, retain) OFFlickrAPIRequest *flickrRequest;
+@property (nonatomic, retain) OFFlickrAPIContext *context;
+@property (nonatomic, retain) NSDictionary *plistDictionary;
+@property (nonatomic, retain) NSURL *photoURL;
+@property (nonatomic, retain) NSData *photoData;
+@property (nonatomic, retain) UIActivityIndicatorView *activityView;
+@property (nonatomic, retain) NSDictionary *perPageDict;
+@property (nonatomic, retain) NSMutableArray *groupPhotoList;
+
+@property (nonatomic, assign) NSInteger perPageAsInt;
+
+//@property (nonatomic, assign) NSString perPage;
+
+-(void)setPopover:(UIPopoverController*)aPopover;
+
+-(void)setMainImage:(UIImageView*)aImage;
+
+-(void)setMirrorState:(BOOL)aMirrorState;
+
+-(void)setMirrorImage:(UIImageView *)aImage;
+
+@end

@@ -1,0 +1,101 @@
+//
+//  SettingsViewController.m
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 9/26/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import "SettingsViewController.h"
+
+
+@implementation SettingsViewController
+@synthesize sliderLabel, photoCountSlider;
+
+/*
+ // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        // Custom initialization
+    }
+    return self;
+}
+*/
+
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+	//Group state
+	sharedGroupState = [SingletonFlickrGroup sharedGroupStateInstance];
+	
+	[self prepPhotoCountSliderAndLabel];
+	
+    [super viewDidLoad];
+}
+
+-(void)prepPhotoCountSliderAndLabel {
+	// Load the data from the settings bundle
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *sliderStringValue = [defaults objectForKey:@"photoCount"];
+	float sliderValue = [sliderStringValue floatValue];
+	[[self photoCountSlider] setValue:sliderValue];
+	sliderValue += 0.5;
+	int sliderValueAsInt = (int)sliderValue;
+	NSString *sliderIntValueAsString = [NSString stringWithFormat:@"%i", sliderValueAsInt];
+	[[self sliderLabel] setText:sliderIntValueAsString];
+}
+
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+*/
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+	self.sliderLabel = nil;
+	self.photoCountSlider = nil;
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+
+- (void)dealloc {
+	[sliderLabel release];
+	[photoCountSlider release];
+    [super dealloc];
+}
+
+-(IBAction)sliderChanged:(id)sender {
+	int progressAsInt = (int)(photoCountSlider.value + 0.5f);
+	NSString *newText = [[NSString alloc] initWithFormat:@"%d", progressAsInt];
+	sliderLabel.text = newText;
+	[newText release];
+	
+	[sharedGroupState setGroupPhotoCountAsInt:progressAsInt];
+}
+
+-(IBAction)doneButtonTapped:(id)sender {
+	if (popover != nil) {
+		[popover dismissPopoverAnimated:YES];
+	} else {
+		NSLog(@"Nothing to dismiss");
+	}
+}	
+
+-(void)setPopover:(UIPopoverController *)aPopover
+{
+	popover = aPopover;
+}
+
+
+@end

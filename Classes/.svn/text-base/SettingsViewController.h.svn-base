@@ -1,0 +1,30 @@
+//
+//  SettingsViewController.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 9/26/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "SingletonFlickrGroup.h"
+
+@interface SettingsViewController : UIViewController {
+	UILabel *sliderLabel;
+	UISlider *photoCountSlider;
+	UIPopoverController *popover;
+	SingletonFlickrGroup *sharedGroupState;
+}
+
+@property (nonatomic, retain) IBOutlet UILabel *sliderLabel;
+@property (nonatomic, retain) IBOutlet UISlider *photoCountSlider;
+
+-(IBAction) sliderChanged:(id)sender;
+
+-(void)setPopover:(UIPopoverController*)aPopover;
+
+-(IBAction)doneButtonTapped:(id)sender;
+
+-(void)prepPhotoCountSliderAndLabel;
+
+@end

@@ -1,0 +1,55 @@
+//
+//  ExternalPhotoInfoCard.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 9/26/10.
+//  Copyright 2010 Mike Pulsifer. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ObjectiveFlickr.h"
+#import "SingletonFlickrGroup.h"
+#import "PersonInfoCard.h"
+
+
+@interface ExternalPhotoInfoCard : UIViewController <OFFlickrAPIRequestDelegate> {
+	NSDictionary *plistDictionary;
+	OFFlickrAPIContext *context;
+	OFFlickrAPIRequest *flickrRequest;
+	SingletonFlickrGroup *sharedGroupState;
+	BOOL loadingEXIF;
+	UIActivityIndicatorView *activityView;
+	
+	PersonInfoCard *artistInfoCardView;
+	
+//	UIPopoverController *popover;
+	
+	UILabel *photoTitle;
+	UILabel *photoDate;
+	UILabel *photoShutterSpeed;
+	UILabel *photoISO;
+	UILabel *photoAperture;
+	UILabel *photoFocalLength;
+	UILabel *photoCamera;
+	UILabel *photoLens;
+	
+}
+@property (nonatomic, retain) PersonInfoCard *artistInfoCardView;
+@property (nonatomic, retain) OFFlickrAPIRequest *flickrRequest;
+@property (nonatomic, retain) OFFlickrAPIContext *context;
+@property (nonatomic, retain) NSDictionary *plistDictionary;
+@property (nonatomic, retain) UIActivityIndicatorView *activityView;
+@property (nonatomic, retain) IBOutlet UILabel *photoTitle;
+@property (nonatomic, retain) IBOutlet UILabel *photoDate;
+@property (nonatomic, retain) IBOutlet UILabel *photoShutterSpeed;
+@property (nonatomic, retain) IBOutlet UILabel *photoISO;
+@property (nonatomic, retain) IBOutlet UILabel *photoAperture;
+@property (nonatomic, retain) IBOutlet UILabel *photoFocalLength;
+@property (nonatomic, retain) IBOutlet UILabel *photoCamera;
+@property (nonatomic, retain) IBOutlet UILabel *photoLens;
+
+//-(void)setPopover:(UIPopoverController*)aPopover;
+
+//-(IBAction)doneButtonTapped:(id)sender;
+
+@end

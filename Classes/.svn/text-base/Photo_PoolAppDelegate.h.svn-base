@@ -1,0 +1,27 @@
+//
+//  Photo_PoolAppDelegate.h
+//  Photo Pool
+//
+//  Created by Michael Pulsifer on 7/4/10.
+//  Copyright Mike Pulsifer 2010. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Reachability.h"
+
+@class Photo_PoolViewController;
+
+@interface Photo_PoolAppDelegate : NSObject <UIApplicationDelegate> {
+    UIWindow *window;
+    Photo_PoolViewController *viewController;
+	Reachability* hostReach;
+	Reachability* internetReach;
+	Reachability* wifiReach;
+	
+}
+
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet Photo_PoolViewController *viewController;
+
+@end
+
